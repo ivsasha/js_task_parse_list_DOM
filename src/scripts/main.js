@@ -3,7 +3,12 @@
 const li = Array.from(document.querySelectorAll('li'));
 
 sortList(li);
-getEmployees(li);
+
+const employ = getEmployees(li);
+
+employ.forEach((item) => {
+  return item;
+});
 
 function sortList(list) {
   const ul = document.querySelector('ul');
