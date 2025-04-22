@@ -1,27 +1,15 @@
 'use strict';
 
-const li = Array.from(document.querySelectorAll('li'));
-
-sortList(li);
-
-const employ = getEmployees(li);
-
-employ.forEach((item) => {
-  return item;
-});
+function convertStrToNum(text) {
+  return +String(text).replaceAll(/[^0-9]*/gm, '');
+}
 
 function sortList(list) {
-  const ul = document.querySelector('ul');
-
-  const sortedItems = list.sort((a, b) => {
-    const salaryA = parseInt(a.getAttribute('data-salary').slice(1));
-    const salaryB = parseInt(b.getAttribute('data-salary').slice(1));
-
-    return salaryA - salaryB;
-  });
-
-  ul.innerHTML = '';
-  sortedItems.forEach((item) => ul.appendChild(item));
+  list.sort(
+    (li1, li2) =>
+      convertStrToNum(li2.dataset.salary) - convertStrToNum(li1.dataset.salary),
+  );
+  ulList.forEach((li) => ul.append(li));
 }
 
 function getEmployees(list) {
@@ -43,3 +31,9 @@ function getEmployees(list) {
 
   return employees;
 }
+
+const ul = document.querySelector('ul');
+const ulList = [...ul.children];
+
+sortList(ulList);
+getEmployees(ulList);
